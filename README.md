@@ -37,4 +37,6 @@ Ketika pengguna mengubah pesanan yang sudah ada, sistem akan mengembalikan terle
 
 # Dokumentasi
 
-<video src="Dokumentasi/TP7_VID.mp4" controls width="700"></video>
+https://github.com/user-attachments/assets/6fe61cbf-1344-4c82-9991-d45ad992a588
+
+
