@@ -18,7 +18,7 @@ class Order {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Menambahkan order (gaya seperti borrowBook)
+    // Menambahkan order
     public function addOrder($name, $concertId, $quantity) {
         // Ambil data konser
         $concertData = $this->db->query("SELECT price, stock FROM concerts WHERE id = $concertId")->fetch();
@@ -51,7 +51,7 @@ class Order {
     // Mengupdate order
 public function updateOrder($id, $name, $concertId, $quantity)
 {
-    // --- Ambil data order lama ---
+    // Ambil data order lama
     $stmtOld = $this->db->prepare("
         SELECT concert_id, quantity 
         FROM orders 
@@ -64,7 +64,7 @@ public function updateOrder($id, $name, $concertId, $quantity)
         return false; // Order tidak ditemukan
     }
 
-    // --- Kembalikan stok dari order lama ---
+    // Kembalikan stok dari order lama
     $stmtRestore = $this->db->prepare("
         UPDATE concerts 
         SET stock = stock + ? 
@@ -72,7 +72,7 @@ public function updateOrder($id, $name, $concertId, $quantity)
     ");
     $stmtRestore->execute([$oldOrder['quantity'], $oldOrder['concert_id']]);
 
-    // --- Ambil data konser baru ---
+    // Ambil data konser baru
     $stmtConcert = $this->db->prepare("
         SELECT price, stock 
         FROM concerts 
@@ -85,10 +85,10 @@ public function updateOrder($id, $name, $concertId, $quantity)
         return false; // Konser tidak ditemukan / stok tidak cukup
     }
 
-    // --- Hitung total harga baru ---
+    // Hitung total harga baru
     $totalPrice = $concert['price'] * $quantity;
 
-    // --- Update data order ---
+    // Update data order
     $stmtUpdate = $this->db->prepare("
         UPDATE orders 
         SET name = ?, concert_id = ?, quantity = ?, total_price = ? 
@@ -96,7 +96,7 @@ public function updateOrder($id, $name, $concertId, $quantity)
     ");
     $result = $stmtUpdate->execute([$name, $concertId, $quantity, $totalPrice, $id]);
 
-    // --- Kurangi stok baru jika update berhasil ---
+    // Kurangi stok baru jika update berhasil
     if ($result) {
         $stmtReduce = $this->db->prepare("
             UPDATE concerts 
@@ -127,3 +127,4 @@ public function updateOrder($id, $name, $concertId, $quantity)
     }
 }
 ?>
+
