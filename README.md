@@ -37,8 +37,4 @@ Ketika pengguna mengubah pesanan yang sudah ada, sistem akan mengembalikan terle
 
 # Dokumentasi
 
-<img width="1902" height="866" alt="image" src="https://github.com/user-attachments/assets/386633fa-93e6-4e88-8c6a-3b83b9dfcc93" />
-<img width="1900" height="860" alt="image" src="https://github.com/user-attachments/assets/8191c96d-0184-47e3-9c8e-6b7d894a2cd8" />
-<img width="1891" height="854" alt="image" src="https://github.com/user-attachments/assets/f9dab895-0e65-4c41-95ab-9045bb3420ef" />
-
-[Dokumentasi dalam bentuk video dapat dilihat di folder 'Dokumentasi']
+<video src="Dokumentasi/TP7_VID.mp4" controls></video>
