@@ -26,3 +26,19 @@ Tabel ini menyimpan informasi mengenai tempat atau lokasi konser. Setiap venue m
 Tabel ini berfungsi untuk mencatat setiap pemesanan tiket yang dilakukan pengguna. Setiap order terhubung langsung ke konser tertentu dan menyimpan informasi mengenai nama pemesan, jumlah tiket yang dibeli, total harga, serta tanggal pemesanan. Struktur kolomnya adalah id — Primary key unik untuk setiap pemesanan, name — Nama pelanggan atau pembeli tiket, concert_id — Foreign key yang menghubungkan pesanan dengan konser tertentu, quantity — Jumlah tiket yang dipesan, total_price — Total harga pesanan (harga tiket × jumlah tiket), order_date — Waktu pemesanan tiket, secara default diisi otomatis dengan timestamp saat data dibuat.
 
 Relasi antara tabel orders dan concerts memastikan bahwa apabila sebuah konser dihapus, semua pesanan yang terkait dengan konser tersebut juga akan ikut terhapus.
+
+# Alur Program
+
+Ketika pengguna pertama kali membuka website, halaman utama akan menampilkan daftar seluruh konser yang tersimpan di tabel concerts. Di halaman ini, pengguna dapat menambah konser baru, memperbarui informasi konser yang sudah ada, atau menghapus konser yang tidak lagi tersedia. Saat pengguna menambahkan konser baru melalui formulir yang berisi nama, harga, dan stok tiket, data tersebut dikirim ke addConcert(). Model ini kemudian menjalankan perintah INSERT untuk menyimpan data ke database, dan setelah proses selesai, pengguna otomatis diarahkan kembali ke halaman utama untuk melihat hasil pembaruan.
+
+Selain daftar konser, terdapat halaman khusus untuk order atau pesanan tiket yang menampilkan semua transaksi yang sudah dibuat dari tabel orders. Di halaman ini, pengguna juga bisa menambah, mengedit, maupun menghapus pesanan. Saat pengguna membuat pesanan baru, sistem akan memeriksa terlebih dahulu stok tiket konser yang dipesan dari tabel concerts. Jika stok mencukupi, sistem akan menyimpan data pesanan baru ke tabel orders dan secara otomatis mengurangi jumlah stok konser sesuai dengan jumlah tiket yang dibeli. Namun, jika stok tidak mencukupi, sistem akan menolak pesanan dan memberikan notifikasi kegagalan.
+
+Ketika pengguna mengubah pesanan yang sudah ada, sistem akan mengembalikan terlebih dahulu stok tiket dari pesanan lama ke konser sebelumnya. Setelah itu, sistem akan menghitung ulang stok berdasarkan jumlah tiket baru yang dipesan dan memperbarui total harga pesanan berdasarkan harga konser yang relevan. Semua proses ini dijalankan oleh fungsi updateOrder(). Sementara itu, jika pengguna memutuskan untuk menghapus pesanan, sistem akan secara otomatis menambahkan kembali jumlah tiket yang dibatalkan ke stok konser terkait.
+
+# Dokumentasi
+
+<img width="1902" height="866" alt="image" src="https://github.com/user-attachments/assets/386633fa-93e6-4e88-8c6a-3b83b9dfcc93" />
+<img width="1900" height="860" alt="image" src="https://github.com/user-attachments/assets/8191c96d-0184-47e3-9c8e-6b7d894a2cd8" />
+<img width="1891" height="854" alt="image" src="https://github.com/user-attachments/assets/f9dab895-0e65-4c41-95ab-9045bb3420ef" />
+
+[Dokumentasi dalam bentuk video dapat dilihat di folder 'Dokumentasi']
