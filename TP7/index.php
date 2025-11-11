@@ -1,12 +1,8 @@
 <?php
-// =============================
-// INCLUDE FILE KELAS & CONFIG
-// =============================
 require_once 'class/Concert.php';
 require_once 'class/Venue.php';
 require_once 'class/Order.php';
 
-// Inisialisasi class
 $concert = new Concert();
 $venue = new Venue();
 $order = new Order();
@@ -119,3 +115,4 @@ if (isset($_GET['cancel_order'])) {
     <?php include 'view/footer.php'; ?>
 </body>
 </html>
+
